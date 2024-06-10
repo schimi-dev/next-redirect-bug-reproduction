@@ -8,7 +8,7 @@ const checkIsUserAuthenticated = () => {
 
 export const getProfile = () => {
   const profileName = cookies().get("profile")?.value;
-  let name = profileName ?? "John Doe";
+  const name = profileName ?? "John Doe";
   return { name };
 };
 
