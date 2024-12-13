@@ -6,16 +6,18 @@ const checkIsUserAuthenticated = () => {
   return false;
 };
 
-export const getProfile = () => {
-  const profileName = cookies().get("profile")?.value;
+export const getProfile = async () => {
+  const cookieStore = await cookies();
+  const profileName = cookieStore.get("profile")?.value;
   const name = profileName ?? "John Doe";
   return { name };
 };
 
-export const updateProfile = (name: string) => {
+export const updateProfile = async (name: string) => {
+  const cookieStore = await cookies();
   const isAuthenticated = checkIsUserAuthenticated();
   if (!isAuthenticated) {
     redirect("/login");
   }
-  cookies().set("profile", name);
+  cookieStore.set("profile", name);
 };

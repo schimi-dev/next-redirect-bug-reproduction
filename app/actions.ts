@@ -5,7 +5,7 @@ import { updateProfile } from "./dal";
 
 export async function updateProfileAction(formData: FormData) {
   const name = formData.get("name") as string;
-  updateProfile(name);
+  await updateProfile(name);
   revalidatePath("/");
   return { message: "Profile saved." };
 }
